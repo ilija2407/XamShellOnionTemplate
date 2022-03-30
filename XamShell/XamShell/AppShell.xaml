@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    FlyoutHeaderBehavior="CollapseOnScroll"
+    ForegroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},
+                                      Light={StaticResource WindowBackgroundColor}}"
+    TitleColor="Black"
+    ios:Page.UseSafeArea="true"
+    x:Class="XamShell.AppShell"
+    x:Name="shell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:views="clr-namespace:XamShell.Views;assembly=XamShell"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Shell.Resources>
+        <Style TargetType="Element" x:Key="BaseStyle">
+            <Setter Property="Shell.BackgroundColor" Value="#455A64" />
+            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor" Value="White" />
+        </Style>
+    </Shell.Resources>
+
+    <!-- <Shell.FlyoutHeader> -->
+    <!--     <controls:FlyoutHeader /> -->
+    <!-- </Shell.FlyoutHeader> -->
+    <!--    -->
+    <!-- <Shell.FlyoutFooter> -->
+    <!--     <controls:FlyoutFooter /> -->
+    <!-- </Shell.FlyoutFooter> -->
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="animals">
+        <Tab
+            Icon="paw.png"
+            Route="home"
+            Shell.FlyoutItemIsVisible="False"
+            Title="Home">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:UsersPage}"
+                Icon="events.png"
+                Route="users"
+                Style="{StaticResource BaseStyle}"
+                Title="Users" />
+        </Tab>
+    </FlyoutItem>
+
+    <MenuItem
+        Command="{Binding NavigateToEventsCommand}"
+        IconImageSource="help.png"
+        Text="Events" />
+
+</Shell>
