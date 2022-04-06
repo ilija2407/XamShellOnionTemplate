@@ -1,11 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\XamShell.Domain.Interfaces\XamShell.Domain.Interfaces.csproj" />
+      <ProjectReference Include="..\XamShell.Domain.Models\XamShell.Domain.Models.csproj" />
     </ItemGroup>
 </Project>

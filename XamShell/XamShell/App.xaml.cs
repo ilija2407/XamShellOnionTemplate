@@ -1,7 +1,10 @@
 ﻿using System;
+using AutoMapper;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamShell.Infrastructure.Data.Repositories;
 using XamShell.Infrastructure.ExternalServices;
+using XamShell.Infrastructure.Services;
 
 namespace XamShell
 {
@@ -10,7 +13,6 @@ namespace XamShell
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<RestService>();
             MainPage = new AppShell();
         }
 

@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AutoMapper;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamShell.Application.Models.DTOs;
+using XamShell.Domain.Models.Data;
+using XamShell.Infrastructure.Data.Repositories;
+using XamShell.Infrastructure.ExternalServices;
+using XamShell.Infrastructure.Services;
 using XamShell.Views;
 
 namespace XamShell
@@ -18,24 +22,48 @@ namespace XamShell
         {
             Current.GoToAsync("eventsPage");
             Current.FlyoutIsPresented = false;   //close the menu 
-
         });
         
         public AppShell()
         {
             InitializeComponent();
+            RegisterDependencies();
             RegisterRoutes();
+            SetDatabase();
+            ConfigureMapper();
             BindingContext = this;
         }
 
+        private void RegisterDependencies()
+        {
+            DependencyService.Register<RestService>();
+            DependencyService.Register<UserService>();
+            DependencyService.Register<UserRepository>();
+        }
+        
         void RegisterRoutes()
         {
-   
             Routes.Add("eventsPage", typeof(EventsPage));
             foreach (var item in Routes)
             {
                 Routing.RegisterRoute(item.Key, item.Value);
             }
+        }
+
+        private async Task SetDatabase()
+        {
+            await UserRepository.Instance;
+        }
+        
+        private void ConfigureMapper()
+        {
+            var configuration = new MapperConfiguration(cfg => 
+            {
+                cfg.CreateMap<User, UserDto>();
+            });
+            
+            DependencyService.RegisterSingleton(configuration.CreateMapper());
+
         }
     }
 }

@@ -3,12 +3,29 @@
 <ContentPage
     x:Class="XamShell.Views.UsersPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:viewModels="clr-namespace:XamShell.ViewModels;assembly=XamShell"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.BindingContext>
+        <viewModels:UsersViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="10"
+            VerticalOptions="CenterAndExpand">
             <Label
                 HorizontalOptions="CenterAndExpand"
                 Text="Users page!"
+                VerticalOptions="CenterAndExpand" />
+
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding User}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding DbUser}"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>

@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamShell.ViewModels;
@@ -21,6 +15,7 @@ namespace XamShell.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            await ((EventsViewModel) BindingContext).SetData();
             await ((EventsViewModel) BindingContext).GetData();
         }
     }

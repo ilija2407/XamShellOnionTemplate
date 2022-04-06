@@ -2,6 +2,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MvvmHelpers;
 using Xamarin.Forms;
+using XamShell.Domain.Models.Data;
+using XamShell.Domain.Repositories;
+using XamShell.Infrastructure.Data.Repositories;
 using XamShell.Infrastructure.ExternalServices;
 
 namespace XamShell.ViewModels
@@ -9,6 +12,8 @@ namespace XamShell.ViewModels
     public class EventsViewModel : BaseViewModel
     {
         private readonly IRestService _restService;
+        private readonly IUserRepository _userRepository;
+
         string _title;
         public string Title
         {
@@ -18,14 +23,17 @@ namespace XamShell.ViewModels
         
         public EventsViewModel()
         {
-            _restService = DependencyService.Get<RestService>();;
             Title = "My Events Page!";
         }
 
         public async Task GetData()
         {
-            var data = await _restService.RefreshDataAsync();
-            if (data != null) Title = data?.Name;
+            //ToDo
+        }
+
+        public async Task SetData()
+        {
+            //ToDo
         }
     }
 }

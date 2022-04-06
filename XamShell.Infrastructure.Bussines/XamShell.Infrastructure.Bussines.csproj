@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <RootNamespace>XamShell.Infrastructure</RootNamespace>
         <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="11.0.1" />
         <PackageReference Include="System.Text.Json" Version="6.0.2" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     </ItemGroup>
@@ -14,5 +15,7 @@
     <ItemGroup>
       <ProjectReference Include="..\XamShell.Application.Interfaces\XamShell.Application.Interfaces.csproj" />
       <ProjectReference Include="..\XamShell.Application.Models\XamShell.Application.Models.csproj" />
+      <ProjectReference Include="..\XamShell.Domain.Interfaces\XamShell.Domain.Interfaces.csproj" />
+      <ProjectReference Include="..\XamShell.Infrastructure.Data\XamShell.Infrastructure.Data.csproj" />
     </ItemGroup>
 </Project>
