@@ -3,13 +3,13 @@
     FlyoutHeaderBehavior="CollapseOnScroll"
     ForegroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},
                                       Light={StaticResource WindowBackgroundColor}}"
-    TitleColor="Black"
+    TitleColor="White"
     ios:Page.UseSafeArea="true"
     x:Class="XamShell.AppShell"
     x:Name="shell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:login="clr-namespace:XamShell.Views.Login;assembly=XamShell"
     xmlns:views="clr-namespace:XamShell.Views;assembly=XamShell"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Shell.Resources>
@@ -27,8 +27,11 @@
     <!-- <Shell.FlyoutFooter> -->
     <!--     <controls:FlyoutFooter /> -->
     <!-- </Shell.FlyoutFooter> -->
+    <ShellItem FlyoutItemIsVisible="False" Route="LoginPage">
+        <ShellContent ContentTemplate="{DataTemplate login:LoginPage}" />
+    </ShellItem>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="animals">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="MainPageRoute">
         <Tab
             Icon="paw.png"
             Route="home"
@@ -38,7 +41,7 @@
                 ContentTemplate="{DataTemplate views:UsersPage}"
                 Icon="events.png"
                 Route="users"
-                Style="{StaticResource BaseStyle}"
+                Shell.ForegroundColor="White"
                 Title="Users" />
         </Tab>
     </FlyoutItem>
@@ -47,5 +50,4 @@
         Command="{Binding NavigateToEventsCommand}"
         IconImageSource="help.png"
         Text="Events" />
-
 </Shell>

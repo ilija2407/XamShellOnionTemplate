@@ -60,6 +60,7 @@ namespace XamShell
             var configuration = new MapperConfiguration(cfg => 
             {
                 cfg.CreateMap<User, UserDto>();
+                cfg.CreateMap<UserDto, User>();
             });
             
             DependencyService.RegisterSingleton(configuration.CreateMapper());

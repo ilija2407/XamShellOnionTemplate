@@ -41,7 +41,7 @@ namespace XamShell.Infrastructure.ExternalServices
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                Debug.WriteLine(@"\ERROR {0}", ex.Message);
             }
 
             return Items;
