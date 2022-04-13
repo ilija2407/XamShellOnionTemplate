@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
+    Shell.BackgroundColor="DarkGoldenrod"
+    Shell.ForegroundColor="White"
+    Title="Events"
     x:Class="XamShell.Views.EventsPage"
     x:DataType="viewModels:EventsViewModel"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:viewModels="clr-namespace:XamShell.ViewModels;assembly=XamShell"
+    xmlns:views="http://xamarin.com/schemas/2020/toolkit"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.BindingContext>
         <viewModels:EventsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding Title}"
-                VerticalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="FillAndExpand">
+            <views:TabView
+                IsSwipeEnabled="True"
+                TabContentBackgroundColor="White"
+                TabIndicatorColor="Black"
+                TabStripBackgroundColor="DarkGray"
+                TabStripHeight="60"
+                TabStripPlacement="Top">
+
+                <views:TabViewItem
+                    FontSize="20"
+                    Text="Tab 1"
+                    TextColor="White"
+                    TextColorSelected="Yellow">
+                    <StackLayout Margin="0,60,0,0">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="TabContent1"
+                            TextColor="Black"
+                            VerticalOptions="Start" />
+                    </StackLayout>
+                </views:TabViewItem>
+
+                <views:TabViewItem
+                    FontSize="20"
+                    Text="Tab 2"
+                    TextColor="White"
+                    TextColorSelected="Yellow">
+                    <StackLayout Margin="0,30,0,0">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="TabContent2"
+                            TextColor="Black"
+                            VerticalOptions="Start" />
+                    </StackLayout>
+                </views:TabViewItem>
+            </views:TabView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
