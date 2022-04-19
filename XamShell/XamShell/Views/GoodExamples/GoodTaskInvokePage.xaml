@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="XamShell.Views.GoodExamples.GoodTaskInvokePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:goodExamples="clr-namespace:XamShell.ViewModels.GoodExamples;assembly=XamShell"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.BindingContext>
+        <goodExamples:GoodTaskInvokeViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label
+                    HorizontalOptions="FillAndExpand"
+                    LineBreakMode="WordWrap"
+                    Margin="8"
+                    Text="{Binding Status}"
+                    VerticalOptions="FillAndExpand" />
+            </ScrollView>
+            <Button Command="{Binding GoodTaskInvokeCommand}" Text="Good task invoke: await instead .Result" />
+            <Button Command="{Binding GoodMultipleTaskExecutionCommand}" Text="Multiple tasks running - good example" />
+            <Button Command="{Binding GoodConsecutiveOperations}" Text="Using Configure await" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

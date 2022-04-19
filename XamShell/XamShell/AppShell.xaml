@@ -50,4 +50,14 @@
         Command="{Binding NavigateToEventsCommand}"
         IconImageSource="help.png"
         Text="Events" />
+
+    <MenuItem
+        Command="{Binding NavigateToGoodExamplesCommand}"
+        IconImageSource="help.png"
+        Text="Good example task invoke" />
+
+    <MenuItem
+        Command="{Binding NavigateToBadExamplesCommand}"
+        IconImageSource="help.png"
+        Text="Bad example task invoke" />
 </Shell>

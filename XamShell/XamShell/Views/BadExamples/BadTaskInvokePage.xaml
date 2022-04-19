@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="XamShell.Views.BadExamples.BadTaskInvokePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:badExapmles="clr-namespace:XamShell.ViewModels.BadExapmles;assembly=XamShell"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.BindingContext>
+        <badExapmles:BadTaskInvokeViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label
+                    HorizontalOptions="FillAndExpand"
+                    LineBreakMode="WordWrap"
+                    Margin="8"
+                    Text="{Binding Status}"
+                    VerticalOptions="FillAndExpand" />
+            </ScrollView>
+            <Button Command="{Binding BadTaskInvokeCommand}" Text="Bad invoke: .Result" />
+            <Button Command="{Binding BadMultipleTaskExecutionCommand}" Text="Multiple tasks running - bad example" />
+            <Button Command="{Binding BadConsecutiveOperations}" Text="Not using Configure await" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

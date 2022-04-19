@@ -11,6 +11,8 @@ using XamShell.Infrastructure.Data.Repositories;
 using XamShell.Infrastructure.ExternalServices;
 using XamShell.Infrastructure.Services;
 using XamShell.Views;
+using XamShell.Views.BadExamples;
+using XamShell.Views.GoodExamples;
 
 namespace XamShell
 {
@@ -24,6 +26,17 @@ namespace XamShell
             Current.FlyoutIsPresented = false;   //close the menu 
         });
         
+        public ICommand NavigateToGoodExamplesCommand => new Command(() =>
+        {
+            Current.GoToAsync("goodTaskInvokePage");
+            Current.FlyoutIsPresented = false;   //close the menu 
+        });
+        
+        public ICommand NavigateToBadExamplesCommand => new Command(() =>
+        {
+            Current.GoToAsync("badTaskInvokePage");
+            Current.FlyoutIsPresented = false;   //close the menu 
+        });
         public AppShell()
         {
             InitializeComponent();
@@ -44,6 +57,9 @@ namespace XamShell
         void RegisterRoutes()
         {
             Routes.Add("eventsPage", typeof(EventsPage));
+            Routes.Add("goodTaskInvokePage", typeof(GoodTaskInvokePage));
+            Routes.Add("badTaskInvokePage", typeof(BadTaskInvokePage));
+
             foreach (var item in Routes)
             {
                 Routing.RegisterRoute(item.Key, item.Value);
