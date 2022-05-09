@@ -1,6 +1,11 @@
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using MvvmHelpers;
+using MvvmHelpers.Commands;
+using MvvmHelpers.Interfaces;
 using Xamarin.Forms;
 using XamShell.Application.Models.DTOs;
 using XamShell.Application.Services;
@@ -16,14 +21,31 @@ namespace XamShell.ViewModels
 
         private string _user;
         private string _dbUser;
-        
+        private ObservableCollection<UserDto> _users;
+
         public UsersViewModel()
         {
             _restService = DependencyService.Get<RestService>();
             _userService = DependencyService.Get<UserService>();
+            AddUserCommand = new AsyncCommand(AddUser, CanExecute);
             Title = "Users Page!";
         }
-       
+        
+        UserDto _selectedUser;
+        public UserDto SelectedUser
+        {
+            get => _selectedUser;
+            set
+            {
+                if (_selectedUser == value) return;
+                _selectedUser = value; 
+                var data = JsonSerializer.Serialize(value);
+                Shell.Current.GoToAsync($"addUserPage?userDto={data}");
+            }
+        }
+
+        public IAsyncCommand AddUserCommand { get; }
+        
         public string User
         {
             get => _user;
@@ -35,10 +57,15 @@ namespace XamShell.ViewModels
             get => _dbUser;
             set => SetProperty(ref _dbUser, value);
         }
+
+        public ObservableCollection<UserDto> Users
+        {
+            get => _users;
+            set => SetProperty(ref _users, value);
+        }
         
         public async Task GetData()
         {
-
             var data = await _restService.RefreshDataAsync();
             if (data != null) User = $"User from the http get request: {data.Name}";
             
@@ -46,14 +73,13 @@ namespace XamShell.ViewModels
             if (repositoryData != null)
             {
                 if (data != null) DbUser = $"User from the database: {repositoryData.FirstOrDefault()?.Name}";
+                Users = new ObservableCollection<UserDto>(repositoryData);
             }
         }
 
         public async Task SetUserData()
         {
-            var repositoryData = await _userService.GetItemsAsync();
-
-            if (repositoryData.Count == 0)
+            if (Users.Count == 0)
             {
                 var user = new UserDto()
                 {
@@ -63,7 +89,26 @@ namespace XamShell.ViewModels
                 };
 
                 await _userService.SaveItemAsync(user);
+                await GetData();
             }
+        }
+
+        private async Task AddUser()
+        {
+            try
+            {
+                IsBusy = true;
+                await Shell.Current.GoToAsync("addUserPage");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private bool CanExecute(object arg)
+        {
+            return !IsBusy;
         }
     }
 }

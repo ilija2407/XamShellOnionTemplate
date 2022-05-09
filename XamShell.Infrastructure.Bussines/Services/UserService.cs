@@ -33,5 +33,11 @@ namespace XamShell.Infrastructure.Services
             var user = _mapper.Map<User>(userDto);
             return await _userRepository.SaveItemAsync(user);
         }
+        
+        public async Task<UserDto> GetUserById(int id)
+        {
+            var repositoryData = await _userRepository.GetUserByIdAsync(id);
+            return _mapper.Map<UserDto>(repositoryData);
+        }
     }
 }

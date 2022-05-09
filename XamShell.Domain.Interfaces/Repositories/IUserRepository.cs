@@ -8,5 +8,6 @@ namespace XamShell.Domain.Repositories
     {
         Task<List<User>> GetItemsAsync();
         Task<int> SaveItemAsync(User item);
+        Task<User> GetUserByIdAsync(int id);
     }
 }

@@ -46,6 +46,10 @@
         </Tab>
     </FlyoutItem>
 
+    <ShellItem FlyoutItemIsVisible="False" Route="AddUser">
+        <ShellContent ContentTemplate="{DataTemplate views:AddUserPage}" />
+    </ShellItem>
+
     <MenuItem
         Command="{Binding NavigateToEventsCommand}"
         IconImageSource="help.png"

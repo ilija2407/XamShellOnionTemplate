@@ -8,5 +8,6 @@ namespace XamShell.Application.Services
     {
         Task<List<UserDto>> GetItemsAsync();
         Task<int> SaveItemAsync(UserDto item);
+        Task<UserDto> GetUserById(int id);
     }
 }

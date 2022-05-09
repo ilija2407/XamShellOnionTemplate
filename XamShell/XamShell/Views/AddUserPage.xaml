@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    Shell.BackgroundColor="DarkGoldenrod"
+    Shell.ForegroundColor="White"
+    Title="{Binding Title}"
+    x:Class="XamShell.Views.AddUserPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:viewModels="clr-namespace:XamShell.ViewModels;assembly=XamShell"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.BindingContext>
+        <viewModels:AddUserViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="30" Spacing="5">
+            <Label Text="UserName" />
+            <Entry Text="{Binding User.Name}" />
+            <Label Text="Age" />
+            <Entry Text="{Binding User.Age}" />
+            <Button
+                Command="{Binding SaveUserCommand}"
+                Margin="20"
+                Text="Save" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

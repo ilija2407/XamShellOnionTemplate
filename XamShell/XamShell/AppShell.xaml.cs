@@ -44,6 +44,8 @@ namespace XamShell
         void RegisterRoutes()
         {
             Routes.Add("eventsPage", typeof(EventsPage));
+            Routes.Add("addUserPage", typeof(AddUserPage));
+
             foreach (var item in Routes)
             {
                 Routing.RegisterRoute(item.Key, item.Value);

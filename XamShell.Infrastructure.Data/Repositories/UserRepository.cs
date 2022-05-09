@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
@@ -28,16 +29,22 @@ namespace XamShell.Infrastructure.Data.Repositories
         {
             return Database.Table<User>().ToListAsync();
         }
-
-        public Task<int> SaveItemAsync(User item)
+        
+        public Task<User> GetUserByIdAsync(int id)
         {
-            if (item.ID != 0)
+            return Database.Table<User>().Where(x => x.Id == id).FirstAsync();
+        }
+
+        public async Task<int> SaveItemAsync(User item)
+        {
+            if (item.Id != 0)
             {
-                return Database.UpdateAsync(item);
+                return await Database.UpdateAsync(item);
             }
             else
             {
-                return Database.InsertAsync(item);
+                await Database.InsertAsync(item);
+                return item.Id;
             }
         }
         

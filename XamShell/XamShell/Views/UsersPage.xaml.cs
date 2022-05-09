@@ -15,8 +15,8 @@ namespace XamShell.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await ((UsersViewModel) BindingContext).SetUserData();
             await ((UsersViewModel) BindingContext).GetData();
+            await ((UsersViewModel) BindingContext).SetUserData();
         }
     }
 }

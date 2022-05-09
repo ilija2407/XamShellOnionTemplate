@@ -11,8 +11,14 @@
     <ContentPage.BindingContext>
         <viewModels:UsersViewModel />
     </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddUserCommand}" Text="+" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout
+            Margin="30"
             Orientation="Vertical"
             Spacing="10"
             VerticalOptions="CenterAndExpand">
@@ -30,6 +36,22 @@
                 HorizontalOptions="CenterAndExpand"
                 Text="{Binding DbUser}"
                 VerticalOptions="CenterAndExpand" />
+
+            <CollectionView
+                ItemsSource="{Binding Users}"
+                SelectedItem="{Binding SelectedUser}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Name}"
+                                VerticalTextAlignment="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
