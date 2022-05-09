@@ -43,14 +43,12 @@ namespace XamShell
 
             string pageUrl = uri.ToString().Replace(appDomain, string.Empty).Trim();
             var parts = pageUrl.Split('?');
-            string page = parts[0];
+            //string page = parts[0]; for linking different pages 
             string pageParameter = parts[1].Replace("id=", string.Empty);
             var userService = DependencyService.Get<UserService>();
-
             var user = await userService.GetUserById(int.Parse(pageParameter));
             var data = JsonSerializer.Serialize(user);
             await Shell.Current.GoToAsync($"addUserPage?userDto={data}");
-
 
             base.OnAppLinkRequestReceived(uri);
         }
